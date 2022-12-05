@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+
+<body onload="onInit()">
+    <h1>Welcome to my Bookshop</h1>
+    <div class="view-btn-container">
+        <button class="view-type-btn" onclick="onChangeView('table')"><span class="material-symbols-outlined table-sign">table</span></button>
+        <button class="view-type-btn" onclick="onChangeView('divs')"><span class="material-symbols-outlined grid-sign">grid_on</span></button>
+    </div>
+    <form onsubmit="onAddBook(event)">
+        <input class="text-box" type="text" name="name" placeholder="Book name" />
+        <input class="text-box" type="text" name="price" placeholder="Price" />
+        <button class="add-book">Add</button>
+    </form>
+    <section class="search-box">
+        <form class="search-form" onsubmit="onSearchBook(event)">
+            <input class="text-box" type="text" name="search" placeholder="Book name" />
+            <button class="search-book">Search</button>
+        </form>
+        <div class="sort-box">
+            <span>Search By: </span>
+            <select onchange="onSortBy(this.value)">
+                <option value="title">Title</option>
+                <option value="price">Price</option>
+                <option value="rate">Rate</option>
+            </select>
+            <label>
+                Descending
+                <input class="sort-desc" type="checkbox" onchange="onSortBy()" />
+            </label>
+        </div>
+    </section>
+
+
+
+    <div class="div-books-container"></div>
+
+
+    <table>
+        <thead>
+            <th>Id</th>
+            <th class="sort-td" onclick="onSortBy('title')">Title</th>
+            <th class="sort-td" onclick="onSortBy('price')">Price</th>
+            <th>Actions</th>
+            <th class="sort-td" onclick="onSortBy('rate')">Rate</th>
+
+        </thead>
+        <tbody class="table-books-container">
+
+        </tbody>
+    </table>
+    <div class="page-btn-container">
+        <button disabled class="page-num-btn prev-btn" onclick="onChangePage('prev')">&lt;</button><span
+            class="page-num-btns"></span><button class="page-num-btn next-btn"
+            onclick="onChangePage('next')">&gt;</button>
+    </div>
+
+
+
+    <div class="modal">
+        <h3></h3>
+        <h4>Price: <span></span> </h4>
+        <h4>Rate: <button onclick="onChangeRate('-1')" class="minus btn-rate">-</button><input onkeydown="return false;"
+                type="number" name="rate" min="0" max="10" class="rate" /><button onclick="onChangeRate('1')"
+                class="plus btn-rate">+</button>
+            <h5>Book Description</h5>
+            <p></p>
+            <button class="close-modal" onclick="onCloseModal()">Close</button>
+    </div>
+
+    <script src="js/services/util.service.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/book.service.js"></script>
+    <script src="js/book.controller.js"></script>
+</body>
+
+</html>
+
+
+
